@@ -12,6 +12,10 @@ public class HP : MonoBehaviour
     }
     void Update()
     {
+        if(_playerHP == 0)
+        {
+
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
