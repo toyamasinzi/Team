@@ -17,10 +17,11 @@ public class GimmickCamera : MonoBehaviour
     {
         if (gameObject.tag == "Finish")//プレイヤー１またはプレイヤー２
         {
+            camera1.SetActive(true);
             _time = 0;
             if (_time > _count)
-            {
-                camera1.SetActive(false);
+            {   camera1.SetActive(false);
+             
             }
         }
     }
