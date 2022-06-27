@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5924fa6289ec0a4190bfaaf2bc64012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
   jumpPower: 20
   time: 0
   count: 3
@@ -1006,7 +1006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276177435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.7, y: -3.43, z: 0}
+  m_LocalPosition: {x: 16.2, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1073,9 +1073,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.2311363, y: 0.4961071}
+  m_Offset: {x: 1.4769936, y: 3.3360825}
   serializedVersion: 2
-  m_Radius: 11.513958
+  m_Radius: 23.062054
 --- !u!1 &1280198454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,7 +1565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66dacc01d631de8419a90532377dc40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   jumpPower: 20
   count: 3
   time: 0
@@ -1709,6 +1709,7 @@ GameObject:
   - component: {fileID: 2015076445}
   - component: {fileID: 2015076444}
   - component: {fileID: 2015076443}
+  - component: {fileID: 2015076446}
   m_Layer: 0
   m_Name: WallGimick
   m_TagString: Untagged
@@ -1804,6 +1805,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2015076446
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015076442}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: aae67e1ad4fe1c340ba4cc8c699e4ca9, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2032125173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,7 +2006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142552447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 10.3791, z: 0}
+  m_LocalPosition: {x: 19.86, y: 10.3791, z: 0}
   m_LocalScale: {x: 1, y: 28.91877, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
