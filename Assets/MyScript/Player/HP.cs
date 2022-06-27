@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HP : MonoBehaviour
 {
+    [SerializeField] GameObject player;
     [SerializeField] int _playerHP = 5;
     [SerializeField] int _enemyAttack = 1;
 
@@ -14,7 +15,7 @@ public class HP : MonoBehaviour
     {
         if(_playerHP == 0)
         {
-
+            player.SetActive(false);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

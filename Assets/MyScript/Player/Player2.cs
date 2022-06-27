@@ -42,6 +42,7 @@ public class Player2 : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump") && jumpCount < 1)
         {
+            rb2d.velocity = Vector2.zero;
             rb2d.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
             jumpCount++;
         }
