@@ -2,27 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HP : MonoBehaviour
+public class HP : MonoBehaviour,IDamegable
 {
-    [SerializeField] GameObject player;
-    [SerializeField] int _playerHP = 5;
+    [SerializeField] GameObject _player;
+    [SerializeField] int _maxHp = 5;
     [SerializeField] int _enemyAttack = 1;
+    private int _currentHp = 0;
 
-    void Start()
+    private void Start()
     {
+        _currentHp = _maxHp;
     }
     void Update()
     {
-        if(_playerHP == 0)
-        {
-            player.SetActive(false);
-        }
+
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if(collision.gameObject.tag == "Enemy") 
+    //    {
+           
+    //    }
+    //}
+
+    public void Damage(int attackPower)
     {
-        if(collision.gameObject.tag == "Enemy") 
+        _currentHp -= _enemyAttack;
+
+        if (_currentHp <= 0)
         {
-            _playerHP -= _enemyAttack;
+            _player.SetActive(false);
         }
     }
 }

@@ -3,25 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] float count = 0f;
-    [SerializeField] string Scene = "Game";
-    private float timer = 0f;
-    bool istimer = false;
+    [SerializeField] float _count = 0f;
+    [SerializeField] string _Scene = "Game";
+    private float _timer = 0f;
+    bool _istimer = false;
     void Update()
     {
-        if (istimer)
+        if (_istimer)
         {
-            timer += Time.deltaTime;
+            _timer += Time.deltaTime;
         }
 
-        if (count < timer)
+        if (_count < _timer)
         {
-            SceneManager.LoadScene(Scene);
+            SceneManager.LoadScene(_Scene);
         }
     }
 
     public void StartTimer()
     {
-        istimer = true;
+        _istimer = true;
     }
 }

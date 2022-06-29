@@ -5,12 +5,12 @@ using UnityEngine;
 public class SwitchDisable : MonoBehaviour
 {
     [SerializeField] Animator _Animator;
-    [SerializeField] string animStateName;
+    [SerializeField] string _animStateName;
     private void OnDisable()
     {
         if (gameObject.tag == "Finish")
         {
-            _Animator.Play(animStateName);       
+            _Animator.Play(_animStateName);
         }
     }
 }
