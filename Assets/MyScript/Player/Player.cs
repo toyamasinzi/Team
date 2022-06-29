@@ -11,22 +11,45 @@ public class Player: MonoBehaviour
     [SerializeField] GameObject _player2;
     [SerializeField] GameObject _camera1;
     [SerializeField] GameObject _camera2;
-    float h = 0f;
 
+    private float _xSpeed = 0f;
+    private Animator _anim;
+    private float _h = 0f;
     private int _jumpCount = 0;
     private Rigidbody2D _rb2d; 
     private Vector2 _dir = new Vector2(0, 0);
 
     void Start()
     {
+        _anim = GetComponent<Animator>();
         _rb2d = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
         _player2.transform.position = gameObject.transform.position;
         _time += Time.deltaTime;
-        h = Input.GetAxisRaw("Horizontal");
-        Vector2 dir = new Vector2(h, 0);
+        _h = Input.GetAxisRaw("Horizontal");
+        _xSpeed = _speed;
+            if (_h > 0)
+
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+                _anim.SetBool("Run", true);
+                _xSpeed = _speed;
+            }
+            else if (_h < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+                _anim.SetBool("Run", true);
+                _xSpeed =- _speed;
+
+            }
+            else
+            {
+                _anim.SetBool("Run", false);
+                _xSpeed = 0.0f;
+            }
+        Vector2 dir = new Vector2(_h, 0);
         Vector2 b = dir.normalized * _speed;
         b.y = _rb2d.velocity.y;
         _rb2d.velocity = b;
