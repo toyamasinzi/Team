@@ -33,21 +33,21 @@ public class Player: MonoBehaviour
             if (_h > 0)
 
             {
-                transform.localScale = new Vector3(1, 1, 1);
-                _anim.SetBool("Run", true);
+                transform.localScale = new Vector2(1, 1);
+                _anim.SetFloat("Blend", 1f);
                 _xSpeed = _speed;
             }
             else if (_h < 0)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
-                _anim.SetBool("Run", true);
+                transform.localScale = new Vector2(-1, 1);
+                _anim.SetFloat("Blend", 1f);
                 _xSpeed =- _speed;
 
             }
             else
             {
-                _anim.SetBool("Run", false);
-                _xSpeed = 0.0f;
+                _anim.SetFloat("Blend", 0.1f);
+                _xSpeed = 0f;
             }
         Vector2 dir = new Vector2(_h, 0);
         Vector2 b = dir.normalized * _speed;
@@ -67,6 +67,12 @@ public class Player: MonoBehaviour
             _rb2d.velocity = Vector2.zero;
             _rb2d.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
             _jumpCount++;
+        }
+        if(Input.GetButtonDown("Fire1"))
+        {
+            _anim.SetBool("Check", true);
+            _anim.SetFloat("Attack", 0.1f);
+            _anim.SetBool("Check", false);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
