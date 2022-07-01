@@ -396,10 +396,10 @@ MonoBehaviour:
   _speed: 10
   _jumpPower: 30
   _time: 0
-  _count: 3
   _player2: {fileID: 1725928921}
   _camera1: {fileID: 510210482}
   _camera2: {fileID: 600246252}
+  _at: 0
 --- !u!114 &183397982
 MonoBehaviour:
   m_ObjectHideFlags: 0

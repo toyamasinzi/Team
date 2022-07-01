@@ -34,4 +34,5 @@ public class HP : MonoBehaviour,IDamegable
             _player.SetActive(false);
         }
     }
+
 }

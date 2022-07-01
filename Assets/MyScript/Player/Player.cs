@@ -7,11 +7,14 @@ public class Player: MonoBehaviour
     [SerializeField] float _speed = 0f;
     [SerializeField] float _jumpPower = 15f;
     [SerializeField] float _time = 0f;
-    [SerializeField] float _count = 3f;
     [SerializeField] GameObject _player2;
     [SerializeField] GameObject _camera1;
     [SerializeField] GameObject _camera2;
+    [SerializeField] float _at = 0f;
 
+    private float _count = 3f;
+    private float _ac = 0.5f;
+    private bool _test = false;
     private float _xSpeed = 0f;
     private Animator _anim;
     private float _h = 0f;
@@ -44,6 +47,7 @@ public class Player: MonoBehaviour
                 _xSpeed =- _speed;
 
             }
+
             else
             {
                 _anim.SetFloat("Blend", 0.1f);
@@ -68,11 +72,12 @@ public class Player: MonoBehaviour
             _rb2d.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
             _jumpCount++;
         }
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") && !_test && _ac <= _at)
         {
             _anim.SetBool("Check", true);
-            _anim.SetFloat("Attack", 0.1f);
-            _anim.SetBool("Check", false);
+            _anim.SetFloat("Attack", 0.2f);
+            _test = true;
+           
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -81,5 +86,14 @@ public class Player: MonoBehaviour
         {
             _jumpCount = 0;
         }
+    }
+    
+    /// <summary>
+    /// アニメーションイベントから呼び出す
+    /// </summary>
+    public void ResetAnim()
+    {
+        _anim.SetBool("Check", false);
+        _test = false;
     }
 }
