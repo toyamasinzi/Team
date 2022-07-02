@@ -72,7 +72,7 @@ public class Player: MonoBehaviour
             _rb2d.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
             _jumpCount++;
         }
-        if(Input.GetButtonDown("Fire1") && !_test && _ac <= _at)
+        if(Input.GetButtonDown("Fire1") && !_test )
         {
             _anim.SetBool("Check", true);
             _anim.SetFloat("Attack", 0.2f);
