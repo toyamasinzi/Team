@@ -37,20 +37,20 @@ public class Player: MonoBehaviour
 
             {
                 transform.localScale = new Vector2(1, 1);
-                _anim.SetFloat("Blend", 1f);
+                _anim.SetFloat("Move", 1f);
                 _xSpeed = _speed;
             }
             else if (_h < 0)
             {
                 transform.localScale = new Vector2(-1, 1);
-                _anim.SetFloat("Blend", 1f);
+                _anim.SetFloat("Move", 1f);
                 _xSpeed =- _speed;
 
             }
 
             else
             {
-                _anim.SetFloat("Blend", 0.1f);
+                _anim.SetFloat("Move", 0.1f);
                 _xSpeed = 0f;
             }
         Vector2 dir = new Vector2(_h, 0);
