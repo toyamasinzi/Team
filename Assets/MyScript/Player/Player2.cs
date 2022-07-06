@@ -56,6 +56,7 @@ public class Player2 : MonoBehaviour
         Vector2 b = dir.normalized * _speed;
         b.y = _rb2d.velocity.y;
         _rb2d.velocity = b;
+
         if (Input.GetKey("q") && _time > _count)
         {
             _player1.SetActive(true);
@@ -78,6 +79,11 @@ public class Player2 : MonoBehaviour
             StartCoroutine("Conbo");
 
         }
+        if (Input.GetButtonDown("Fire2") && !_back)
+        {
+            _anim.SetBool("Gun", true);
+            _back = true;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -89,6 +95,7 @@ public class Player2 : MonoBehaviour
     public void ResetAnim()
     {
         _anim.SetBool("Check", false);
+        _anim.SetBool("Gun", false);
         _back = false;
     }
 }
