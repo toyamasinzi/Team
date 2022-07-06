@@ -24,7 +24,7 @@ public class Player: MonoBehaviour
 
     void Start()
     {
-        _anim = GetComponent<Animator>();
+         _anim = GetComponent<Animator>();
         _rb2d = GetComponent<Rigidbody2D>();
     }
     void Update()
@@ -77,7 +77,13 @@ public class Player: MonoBehaviour
             _anim.SetBool("Check", true);
             _anim.SetFloat("Attack", 0.2f);
             _test = true;
-           
+            StartCoroutine("Conbo");
+
+        }
+        if (Input.GetButtonDown("Fire2") && !_test)
+        {
+            _anim.SetBool("DashAt", true);
+            _test = true;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -87,6 +93,11 @@ public class Player: MonoBehaviour
             _jumpCount = 0;
         }
     }
+    private IEnumerator Conbo()
+    {
+
+        yield return new WaitForSeconds(1f);
+    }
     
     /// <summary>
     /// アニメーションイベントから呼び出す
@@ -94,6 +105,7 @@ public class Player: MonoBehaviour
     public void ResetAnim()
     {
         _anim.SetBool("Check", false);
+        _anim.SetBool("DashAt", false);
         _test = false;
     }
 }
