@@ -11,7 +11,6 @@ public class Player2 : MonoBehaviour
     [SerializeField] GameObject _player1;
     [SerializeField] GameObject _camera1;
     [SerializeField] GameObject _camera2;
-    float h = 0f;
 
     private int _jumpCount = 0;
     private Rigidbody2D _rb2d;
@@ -31,7 +30,6 @@ public class Player2 : MonoBehaviour
         _player1.transform.position = gameObject.transform.position;
         _time += Time.deltaTime;
         _h = Input.GetAxisRaw("Horizontal");
-        _xSpeed = _speed;
         if (_h > 0)
 
         {
@@ -76,7 +74,7 @@ public class Player2 : MonoBehaviour
             _anim.SetBool("Check", true);
             _anim.SetFloat("Attack", 0.2f);
             _back = true;
-            StartCoroutine("Conbo");
+           // StartCoroutine("Conbo");
 
         }
         if (Input.GetButtonDown("Fire2") && !_back)

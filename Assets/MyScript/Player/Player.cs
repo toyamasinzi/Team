@@ -10,10 +10,8 @@ public class Player: MonoBehaviour
     [SerializeField] GameObject _player2;
     [SerializeField] GameObject _camera1;
     [SerializeField] GameObject _camera2;
-    [SerializeField] float _at = 0f;
 
     private float _count = 3f;
-    private float _ac = 0.5f;
     private bool _test = false;
     private float _xSpeed = 0f;
     private Animator _anim;
@@ -32,7 +30,7 @@ public class Player: MonoBehaviour
         _player2.transform.position = gameObject.transform.position;
         _time += Time.deltaTime;
         _h = Input.GetAxisRaw("Horizontal");
-        _xSpeed = _speed;
+
             if (_h > 0)
 
             {
@@ -47,12 +45,12 @@ public class Player: MonoBehaviour
                 _xSpeed =- _speed;
 
             }
-
             else
             {
                 _anim.SetFloat("Move", 0.1f);
                 _xSpeed = 0f;
             }
+
         Vector2 dir = new Vector2(_h, 0);
         Vector2 b = dir.normalized * _speed;
         b.y = _rb2d.velocity.y;
@@ -93,11 +91,11 @@ public class Player: MonoBehaviour
             _jumpCount = 0;
         }
     }
-    private IEnumerator Conbo()
+   /* private IEnumerator Conbo()
     {
 
         yield return new WaitForSeconds(1f);
-    }
+    }*/
     
     /// <summary>
     /// アニメーションイベントから呼び出す
@@ -107,5 +105,9 @@ public class Player: MonoBehaviour
         _anim.SetBool("Check", false);
         _anim.SetBool("DashAt", false);
         _test = false;
+    }
+    public void Speed(float _sp)
+    {
+        _speed += _sp;
     }
 }
