@@ -74,11 +74,8 @@ public class Player: MonoBehaviour
         }
         if(Input.GetButtonDown("Fire1"))
         {
-           // _anim.SetTrigger("at");
-            // StartCoroutine("Conbo");
             if (_attackCount >= _attacks.Length)
             {
-                //_attacks = 0;
                 return;
             }
             if (_attackNow)
@@ -101,7 +98,7 @@ public class Player: MonoBehaviour
         }
         if(Input.GetButtonDown("Fire3"))
         {
-            _anim.Play("Avoid");
+            _anim.Play("Player1_Avoid");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -123,7 +120,6 @@ public class Player: MonoBehaviour
     }
     private void AttackReset()
     {
-        Debug.Log($"F{_attackCount}:{_attacks.Length}");
         if (_fastInput || _attackCount >= _attacks.Length)
         {
             _attackCount = 0;

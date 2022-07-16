@@ -8,13 +8,4 @@ public class AttackCollider : MonoBehaviour
     {
             Debug.Log("1");
     }
-
-  /*  public void ColliderSettrue()
-    {
-        .SetActive(true);
-    }
-    public void ColliderSetfalse()
-    {
-        .SetActive(false);
-    }*/
 }
