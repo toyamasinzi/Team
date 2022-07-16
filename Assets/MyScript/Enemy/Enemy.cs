@@ -11,8 +11,8 @@ public class Enemy : MonoBehaviour,IDamegable
     [SerializeField] int _attackPower = 1;
 
     private Animator _anim;
-    private float _xSpeed = 0f;
-    private float _h = 0f;
+    //private float _xSpeed = 0f;
+   // private float _h = 0f;
 
     private void Start()
     {

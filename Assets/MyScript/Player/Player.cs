@@ -10,16 +10,18 @@ public class Player: MonoBehaviour
     [SerializeField] GameObject _player2;
     [SerializeField] GameObject _camera1;
     [SerializeField] GameObject _camera2;
+    [SerializeField]private string[] _attacks = { "AT1", "AT2", "AT3" };
 
     private float _count = 3f;
-    private bool _test = false;
     private float _xSpeed = 0f;
     private Animator _anim;
     private float _h = 0f;
     private int _jumpCount = 0;
     private Rigidbody2D _rb2d; 
     private Vector2 _dir = new Vector2(0, 0);
-
+    private int _attackCount = 0;
+    private bool _attackNow = false;
+    private bool _fastInput = false;
     void Start()
     {
          _anim = GetComponent<Animator>();
@@ -70,18 +72,36 @@ public class Player: MonoBehaviour
             _rb2d.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
             _jumpCount++;
         }
-        if(Input.GetButtonDown("Fire1") && !_test )
+        if(Input.GetButtonDown("Fire1"))
         {
-            _anim.SetBool("Check", true);
-            _anim.SetFloat("Attack", 0.2f);
-            _test = true;
-            StartCoroutine("Conbo");
-
+           // _anim.SetTrigger("at");
+            // StartCoroutine("Conbo");
+            if (_attackCount >= _attacks.Length)
+            {
+                //_attacks = 0;
+                return;
+            }
+            if (_attackNow)
+            {
+                if (_fastInput)
+                {
+                    _fastInput = false;
+                }
+                return;
+            }
+            _attackNow = true;
+            _fastInput = true;
+            _anim.Play(_attacks[_attackCount]);
+            _attackCount++;
         }
-        if (Input.GetButtonDown("Fire2") && !_test)
+        if (Input.GetButtonDown("Fire2"))
         {
-            _anim.SetBool("DashAt", true);
-            _test = true;
+            //_anim.SetTrigger("dsh");
+            _anim.Play("Player1_DashAttack");
+        }
+        if(Input.GetButtonDown("Fire3"))
+        {
+            _anim.Play("Avoid");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -97,17 +117,22 @@ public class Player: MonoBehaviour
         yield return new WaitForSeconds(1f);
     }*/
     
-    /// <summary>
-    /// アニメーションイベントから呼び出す
-    /// </summary>
-    public void ResetAnim()
-    {
-        _anim.SetBool("Check", false);
-        _anim.SetBool("DashAt", false);
-        _test = false;
-    }
     public void Speed(float _sp)
     {
         _speed += _sp;
+    }
+    private void AttackReset()
+    {
+        Debug.Log($"F{_attackCount}:{_attacks.Length}");
+        if (_fastInput || _attackCount >= _attacks.Length)
+        {
+            _attackCount = 0;
+            _fastInput = false;
+            _attackNow = false;
+            return;
+        }
+        _anim.Play(_attacks[_attackCount]);
+        _attackCount++;
+        _fastInput = true;
     }
 }
