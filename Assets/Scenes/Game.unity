@@ -889,7 +889,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4770858, y: 1}
+    m_SensorSize: {x: 1.2467686, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1099,7 +1099,7 @@ MonoBehaviour:
   _player2: {fileID: 984239355}
   _camera1: {fileID: 831074607}
   _camera2: {fileID: 200220479}
-  _attacks:
+  _nlAttacks:
   - Player1_Attack1
   - Player1_Attack2
   - Player1_Attack3
