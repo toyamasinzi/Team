@@ -22,8 +22,10 @@ public class Player : MonoBehaviour
     private int _attackCount = 0;
     private bool _attackNow = false;
     private bool _fastInput = false;
+    public GroundChecck _Ground;
     void Start()
     {
+        _Ground = GetComponentInChildren<GroundChecck>();
         _anim = GetComponent<Animator>();
         _rb2d = GetComponent<Rigidbody2D>();
     }
@@ -50,12 +52,12 @@ public class Player : MonoBehaviour
             _anim.SetFloat("Move", 0.1f);
             _xSpeed = 0f;
         }
-       /* if (_rb2d.velocity.y < 0)
+        if (_rb2d.velocity.y < 0 && _Ground._groundCheck)
         {
             Debug.Log("2");
             _anim.SetFloat("JumpMove", 1f);
             _anim.SetBool("Jump", true);
-        }*/
+        }
         Vector2 dir = new Vector2(_h, 0);
         Vector2 b = dir.normalized * _speed;
         b.y = _rb2d.velocity.y;
