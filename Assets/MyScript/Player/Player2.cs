@@ -19,9 +19,11 @@ public class Player2 : MonoBehaviour
     private Animator _anim;
     private bool _back = false;
     private float _h = 0f;
+    public GroundChecck _Ground;
 
     void Start()
     {
+        _Ground = GetComponentInChildren<GroundChecck>();
         _anim = GetComponent<Animator>();
         _rb2d = GetComponent<Rigidbody2D>();
     }
@@ -44,11 +46,16 @@ public class Player2 : MonoBehaviour
             _xSpeed = -_speed;
 
         }
-
         else
         {
             _anim.SetFloat("Move1", 0.1f);
             _xSpeed = 0f;
+        }
+        if (_rb2d.velocity.y < 0 && _Ground._groundCheck)
+        {
+            Debug.Log("2");
+            _anim.SetFloat("JumpMove", 1f);
+            _anim.SetBool("Jump", true);
         }
         Vector2 dir = new Vector2(_h, 0);
         Vector2 b = dir.normalized * _speed;
@@ -67,20 +74,21 @@ public class Player2 : MonoBehaviour
         {
             _rb2d.velocity = Vector2.zero;
             _rb2d.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
+            if (_rb2d.velocity.y > 0)
+            {
+                Debug.Log("1");
+                _anim.SetFloat("JumpMove", 0f);
+                _anim.SetBool("Jump", true);
+            }
             _jumpCount++;
         }
-        if (Input.GetButtonDown("Fire1") && !_back)
+        if (Input.GetButtonDown("Fire1"))
         {
-            _anim.SetBool("Check", true);
-            _anim.SetFloat("Attack", 0.2f);
-            _back = true;
-           // StartCoroutine("Conbo");
-
+            _anim.Play("Attack1");
         }
         if (Input.GetButtonDown("Fire2") && !_back)
         {
-            _anim.SetBool("Gun", true);
-            _back = true;
+            _anim.Play("GunAttack");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -88,12 +96,7 @@ public class Player2 : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             _jumpCount = 0;
+            _anim.SetBool("Jump", false);
         }
-    }
-    public void ResetAnim()
-    {
-        _anim.SetBool("Check", false);
-        _anim.SetBool("Gun", false);
-        _back = false;
     }
 }
