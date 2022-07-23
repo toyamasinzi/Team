@@ -17,9 +17,9 @@ public class Player2 : MonoBehaviour
     private Vector2 _dir = new Vector2(0, 0);
     private float _xSpeed = 0f;
     private Animator _anim;
-    private bool _back = false;
     private float _h = 0f;
     public GroundChecck _Ground;
+    private float _ct = 0f;
 
     void Start()
     {
@@ -29,6 +29,7 @@ public class Player2 : MonoBehaviour
     }
     void Update()
     {
+        _ct += Time.deltaTime;
         _player1.transform.position = gameObject.transform.position;
         _time += Time.deltaTime;
         _h = Input.GetAxisRaw("Horizontal");
@@ -62,7 +63,7 @@ public class Player2 : MonoBehaviour
         b.y = _rb2d.velocity.y;
         _rb2d.velocity = b;
 
-        if (Input.GetKey("q") && _time > _count)
+        if (Input.GetKey("q") && _time > _count && _ct > 0.4)
         {
             _player1.SetActive(true);
             gameObject.SetActive(false);
@@ -81,14 +82,22 @@ public class Player2 : MonoBehaviour
                 _anim.SetBool("Jump", true);
             }
             _jumpCount++;
+            _ct = 0;
         }
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && _ct > 0.4)
         {
             _anim.Play("Attack1");
+            _ct = 0;
         }
-        if (Input.GetButtonDown("Fire2") && !_back)
+        if (Input.GetButtonDown("Fire2") && _ct > 0.4)
         {
             _anim.Play("GunAttack");
+            _ct = 0;
+        }
+        if(Input.GetButtonDown("Fire3") && _ct > 0.4)
+        {
+            _anim.Play("Guard");
+            _ct = 0;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

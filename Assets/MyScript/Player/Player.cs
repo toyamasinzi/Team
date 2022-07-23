@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private bool _attackNow = false;
     private bool _fastInput = false;
     public GroundChecck _Ground;
+    public float _ct = 0f;
     void Start()
     {
         _Ground = GetComponentInChildren<GroundChecck>();
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        _ct += Time.deltaTime;
         _player2.transform.position = gameObject.transform.position;
         _time += Time.deltaTime;
         _h = Input.GetAxisRaw("Horizontal");
@@ -102,14 +104,17 @@ public class Player : MonoBehaviour
             _fastInput = true;
             _anim.Play(_nlAttacks[_attackCount]);
             _attackCount++;
+            _ct = 0;
         }
         if (Input.GetButtonDown("Fire2"))
         {
             _anim.Play("Player1_DashAttack");
+            _ct = 0;
         }
         if (Input.GetButtonDown("Fire3"))
         {
             _anim.Play("Player1_Avoid");
+            _ct = 0;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
