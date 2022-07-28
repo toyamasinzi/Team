@@ -91,7 +91,7 @@ public class Player2 : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire2") && _ct > 0.4)
         {
-            _anim.Play("GunAttack");
+            _anim.Play("Player2_Attack2conb");
             _ct = 0;
         }
         if(Input.GetButtonDown("Fire3") && _ct > 0.4)
