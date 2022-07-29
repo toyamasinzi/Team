@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
         }
         if (_rb2d.velocity.y < 0 && _Ground._groundCheck)
         {
-            Debug.Log("2");
             _anim.SetFloat("JumpMove", 1f);
             _anim.SetBool("Jump", true);
         }
@@ -79,7 +78,6 @@ public class Player : MonoBehaviour
             _rb2d.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
             if (_rb2d.velocity.y > 0)
             {
-                Debug.Log("1");
                 _anim.SetFloat("JumpMove", 0f);
                 _anim.SetBool("Jump", true);
             }

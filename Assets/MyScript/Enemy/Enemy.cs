@@ -33,13 +33,15 @@ public class Enemy : MonoBehaviour, IDamegable
                 GetComponent<Rigidbody2D>().velocity = new Vector2(targeting.x * _speed, 0);//ƒvƒŒƒCƒ„[’Ç‚¤
                 if (targeting.x > 0)
                 {
-                    transform.rotation = new Quaternion(0, 1, 0, 0);
+                //transform.rotation = new Quaternion(0, 1, 0, 0);
+                transform.localScale = new Vector2(-1,1);
                     _anim.SetFloat("Move", 1f);
                 }
                 else
                 {
-                    transform.rotation = new Quaternion(0, 0, 0, 0);
-                    _anim.SetFloat("Move", 1f);
+                // transform.rotation = new Quaternion(0, 0, 0, 0);
+                transform.localScale = new Vector2(1, 1);
+                _anim.SetFloat("Move", 1f);
                 }
         }
         
