@@ -30,13 +30,6 @@ public class EnemyAttack : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(gameObject.tag == "Player" || gameObject.tag == "Player2")
-        {
-            Debug.Log("a");
-        }
-    }
     public void StartAt()
     {
         _col.SetActive(false);
