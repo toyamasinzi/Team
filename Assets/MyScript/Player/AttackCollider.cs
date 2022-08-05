@@ -6,6 +6,6 @@ public class AttackCollider : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-            Debug.Log("1");
+        Debug.Log("1");
     }
 }

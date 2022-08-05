@@ -4,47 +4,61 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] Transform _centerPos = default;
-    [SerializeField] LayerMask _playerMask = 3;
-    [SerializeField] float _radius = 1;
-    [SerializeField] GameObject _col;
+    [SerializeField] Transform _centerPos; //レイのセンターポジション
+    [SerializeField] LayerMask _playerMask = 3;//プレイヤーの当たり判定
+    [SerializeField] GameObject _col;//攻撃の当たり判定
+    [SerializeField] Animator _anim;//再生したいアニメ－ター
+    [SerializeField] float _radius = 1f;//レイの半径
+    [SerializeField] string _animStateName;//アニメーションの名前
+    [SerializeField] float _ct;//_colのクールタイム
+    [SerializeField] float _timer = 0f;//クールタイムの時間
 
-    private Animator _anim;
-    private float _ct = 0f;
-
-    void Start()
+    private void Start()
     {
-        _anim = GetComponent<Animator>();
+        if (_centerPos == null  || _col == null || _anim == null)
+        {
+            Debug.LogError("参照を確認");
+        }
     }
-
     void Update()
     {
-        _ct += Time.deltaTime;
+        _timer += Time.deltaTime;
+
         if (InSight())
         {
-            if (_ct > 2)
+            if (_timer > _ct)
             {
-                _anim.Play("Enemy1_Attack");
-                _ct = 0f;
+                _anim.Play(_animStateName);
+                _timer = 0f;
                 _col.SetActive(true);
             }
         }
     }
+    /// <summary>
+    /// レイ
+    /// </summary>
+    /// <returns></returns>
+    bool InSight()
+    {
+        Vector2 center = _centerPos.position;
+        bool _inSight = Physics2D.CircleCast(center, _radius, Vector2.left, 0, _playerMask);//始点、半径　方向　距離　オブジェクトレイヤー
+        return _inSight;
+    }
+
+    /// <summary>
+    /// レイを可視化するための色
+    /// </summary>
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_centerPos.position, _radius);
+    }
+    /// <summary>
+    /// アニメーションイベント
+    /// </summary>
     public void StartAt()
     {
         _col.SetActive(false);
     }
-    bool InSight()
-        {
-            Vector2 center = _centerPos.position;
-            bool inSight = Physics2D.CircleCast(center, _radius, Vector2.left, 0f, _playerMask);//始点、半径　方向　距離　オブジェクトレイヤー
-            return inSight;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(_centerPos.position, _radius);
-        }
 }
 

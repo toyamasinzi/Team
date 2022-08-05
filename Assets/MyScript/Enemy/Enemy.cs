@@ -28,23 +28,23 @@ public class Enemy : MonoBehaviour, IDamegable
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
-            _plt = true;    
-                Vector2 targeting = (_player1.transform.position - transform.position).normalized;//プレイヤー-敵キャラの位置関係から方向を取得し、速度を一定化
-                GetComponent<Rigidbody2D>().velocity = new Vector2(targeting.x * _speed, 0);//プレイヤー追う
-                if (targeting.x > 0)
-                {
+            _plt = true;
+            Vector2 targeting = (_player1.transform.position - transform.position).normalized;//プレイヤー-敵キャラの位置関係から方向を取得し、速度を一定化
+            GetComponent<Rigidbody2D>().velocity = new Vector2(targeting.x * _speed, 0);//プレイヤー追う
+            if (targeting.x > 0)
+            {
                 //transform.rotation = new Quaternion(0, 1, 0, 0);
-                transform.localScale = new Vector2(-1,1);
-                    _anim.SetFloat("Move", 1f);
-                }
-                else
-                {
+                transform.localScale = new Vector2(-1, 1);
+                _anim.SetFloat("Move", 1f);
+            }
+            else
+            {
                 // transform.rotation = new Quaternion(0, 0, 0, 0);
                 transform.localScale = new Vector2(1, 1);
                 _anim.SetFloat("Move", 1f);
-                }
+            }
         }
-        
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
