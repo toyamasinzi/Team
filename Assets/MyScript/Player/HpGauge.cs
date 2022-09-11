@@ -8,8 +8,8 @@ public class HpGauge : MonoBehaviour
 {
     [SerializeField] float _time = 0f;
     [SerializeField] Slider _slider =default;
-    [SerializeField] int _currentHp = 100;
-    [SerializeField] int _damega = 5;
+    [SerializeField] float _currentHp = 100f;
+    [SerializeField] float _damega = 5f;
 
     void Start()
     {
@@ -21,10 +21,10 @@ public class HpGauge : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            ChangeValue(_slider.value - _damega);
+            HPGauge(_slider.value - _damega);
         }
     }
-    void ChangeValue(float value)
+    void HPGauge(float value)
     {
         DOTween.To(() => _slider.value, x => _slider.value = x, value,_time);
     }
