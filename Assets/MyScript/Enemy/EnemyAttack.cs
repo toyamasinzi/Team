@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] Transform _centerPos; //レイのセンターポジション
-    [SerializeField] LayerMask _playerMask = 3;//プレイヤーの当たり判定
+    [Header("レイのセンターポジション")]
+    [SerializeField] Transform _centerPos;
+    [Header("プレイヤーの当たり判定")]
+    [SerializeField] LayerMask _playerMask = 3;
     [SerializeField] GameObject _col;//攻撃の当たり判定
     [SerializeField] Animator _anim;//再生したいアニメ－ター
     [SerializeField] float _radius = 1f;//レイの半径

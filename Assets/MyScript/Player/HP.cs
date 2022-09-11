@@ -5,11 +5,11 @@ using UnityEngine;
 public class HP : MonoBehaviour,IDamegable
 {
     [SerializeField] GameObject _player;
-    [SerializeField] int _maxHp = 5;
-    [SerializeField] int _enemyAttack = 1;
-    private int _currentHp = 0;
+    [SerializeField] float _maxHp = 500f;
+    [SerializeField] float _enemyAttack = 100f;
+    private float _currentHp = 0;
 
-    private void Start()
+    private void Awake()
     {
         _currentHp = _maxHp;
     }
@@ -17,13 +17,6 @@ public class HP : MonoBehaviour,IDamegable
     {
 
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if(collision.gameObject.tag == "Enemy") 
-    //    {
-           
-    //    }
-    //}
 
     public void Damage(int attackPower)
     {

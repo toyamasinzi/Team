@@ -12,6 +12,7 @@ public class Fly : MonoBehaviour
     {
         _player = GameObject.Find("Player");
         _rb2d = GetComponent<Rigidbody2D>();
+
         if (_player.transform.localScale.x > 0)
         {
             _rb2d.velocity = Vector2.right * _speed;

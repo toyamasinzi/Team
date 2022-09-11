@@ -22,8 +22,11 @@ public class Player : MonoBehaviour
     private int _attackCount = 0;
     private bool _attackNow = false;
     private bool _fastInput = false;
-    public GroundChecck _Ground;
+    private bool _inputCheck = false;
+
     public float _ct = 0f;
+    public GroundChecck _Ground;
+
     void Start()
     {
         _Ground = GetComponentInChildren<GroundChecck>();
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour
         _player2.transform.position = gameObject.transform.position;
         _time += Time.deltaTime;
         _h = Input.GetAxisRaw("Horizontal");
+
         if (_h > 0)
         {
             transform.localScale = new Vector2(1, 1);
@@ -47,7 +51,6 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector2(-1, 1);
             _anim.SetFloat("Move", 1f);
             _xSpeed = -_speed;
-
         }
         else
         {
@@ -59,6 +62,7 @@ public class Player : MonoBehaviour
             _anim.SetFloat("JumpMove", 1f);
             _anim.SetBool("Jump", true);
         }
+
         Vector2 dir = new Vector2(_h, 0);
         Vector2 b = dir.normalized * _speed;
         b.y = _rb2d.velocity.y;
@@ -82,7 +86,6 @@ public class Player : MonoBehaviour
                 _anim.SetBool("Jump", true);
             }
             _jumpCount++;
-
         }
         if (Input.GetButtonDown("Fire1"))
         {
@@ -103,18 +106,22 @@ public class Player : MonoBehaviour
             _anim.Play(_nlAttacks[_attackCount]);
             _attackCount++;
             _ct = 0;
+            _inputCheck = true;
         }
         if (Input.GetButtonDown("Fire2"))
         {
             _anim.Play("Player1_DashAttack");
             _ct = 0;
+            _inputCheck = true;
         }
         if (Input.GetButtonDown("Fire3"))
         {
             _anim.Play("Player1_Avoid");
             _ct = 0;
+            _inputCheck = true;
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -123,10 +130,12 @@ public class Player : MonoBehaviour
             _anim.SetBool("Jump", false);
         }
     }
+
     public void Speed(float _sp)
     {
         _speed += _sp;
     }
+
     private void AttackReset()
     {
         if (_fastInput || _attackCount >= _nlAttacks.Length)
@@ -139,5 +148,9 @@ public class Player : MonoBehaviour
         _anim.Play(_nlAttacks[_attackCount]);
         _attackCount++;
         _fastInput = true;
+    }
+    private void Simultaneousv()
+    {
+        _inputCheck = false;
     }
 }
