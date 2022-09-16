@@ -10,6 +10,7 @@ public class HpGauge : MonoBehaviour
     [SerializeField] Slider _slider =default;
     [SerializeField] float _currentHp = 100f;
     [SerializeField] float _damega = 5f;
+    [SerializeField] float _trapDamega = 1f;
 
     void Start()
     {
@@ -22,6 +23,13 @@ public class HpGauge : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             HPGauge(_slider.value - _damega);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Trap")
+        {
+            HPGauge(_slider.value - _trapDamega);
         }
     }
     void HPGauge(float value)
